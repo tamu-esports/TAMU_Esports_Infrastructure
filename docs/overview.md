@@ -103,7 +103,7 @@ sequenceDiagram
 | **Flywire** (tamu.estore.flywire.com) | Dues payment processing | Officers |
 | **Cloudflare** | Website hosting, domain DNS, custom email routing | Development team |
 | **Google Cloud Platform (GCP)** | Server hosting for backend, bot, and database | Development team |
-| **GitHub** | Source code repository and CI/CD | Development team |
+| **GitHub** (`tamu-esports` org) | Source code repository and CI/CD | Development team |
 | **Porkbun** | Domain registration (tamuesports.com) | Pierce Ray (rented) |
 | **Shopify** | Merchandise store | Officers |
 
