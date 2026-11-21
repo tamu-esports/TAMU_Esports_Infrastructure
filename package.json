@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ConnorB26/TAMU_eSports_Infratstructure.git"
+    "url": "git+https://github.com/tamu-esports/TAMU_Esports_Infrastructure.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ConnorB26/TAMU_eSports_Infratstructure/issues"
+    "url": "https://github.com/tamu-esports/TAMU_Esports_Infrastructure/issues"
   },
-  "homepage": "https://github.com/ConnorB26/TAMU_eSports_Infratstructure#readme"
+  "homepage": "https://github.com/tamu-esports/TAMU_Esports_Infrastructure#readme"
 }

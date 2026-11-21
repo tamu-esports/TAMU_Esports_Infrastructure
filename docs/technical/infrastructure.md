@@ -101,7 +101,7 @@ graph LR
 
 ### Backend & Bot Build (Automatic)
 
-GCP Cloud Build is connected directly to the GitHub repository (`ConnorB26/TAMU_Esports_Infrastructure`). Two build triggers are configured:
+GCP Cloud Build is connected directly to the GitHub repository (`tamu-esports/TAMU_Esports_Infrastructure`). Two build triggers are configured:
 
 | Trigger | Event | Config File |
 |---------|-------|-------------|
@@ -232,6 +232,30 @@ Custom `@tamuesports.com` addresses forward to officer TAMU emails:
 | development@tamuesports.com | Officer's TAMU email |
 
 These are managed in Cloudflare under **Email Routing** and should be updated when officers change.
+
+## Accounts & Ownership
+
+Everything is owned by club accounts rather than any one person, so access can be handed to new officers without relying on previous ones.
+
+### GitHub
+- The repository lives in the **`tamu-esports`** GitHub organization: `tamu-esports/TAMU_Esports_Infrastructure`
+- The org's contact email is `tamu.esports.development@gmail.com`, and that account is an org Owner
+- The org should always have **at least 2 Owners** (the dev account plus a current officer/lead developer)
+- Developers should be invited with their own GitHub accounts; remove people when they leave the team
+- Connected GitHub Apps (installed on the org): **Google Cloud Build** (builds backend/bot images) and **Cloudflare Pages** (builds the frontend). If either stops deploying, check the app still has access to this repo under the org's Settings > GitHub Apps
+- Repository secrets (e.g. the server SSH key) live in the repo's Settings > Secrets and moved with the repo
+
+### Google Cloud Platform
+- **Project**: `tamu-esports-infrastructure`, logged into with `tamu.esports.development@gmail.com`
+- **What runs there**: the Compute Engine VM (backend, bot, Postgres via Docker Compose), Cloud Build (2 triggers, see [CI/CD Pipeline](#cicd-pipeline)), Artifact Registry (Docker images), and a Cloud Storage bucket for build logs
+- **Access**: add new developers in IAM & Admin > IAM using their own Google accounts rather than sharing the dev account password. Keep at least 2 project Owners
+- **Billing**: the project's billing account is paid personally by Connor Bowling (former lead developer). The dev account can view costs but cannot change the payment method. The setup is designed to stay within or near the free tier. If billing ever needs to move, create a new billing account with the club's payment method and switch the project to it under Billing > Account management **before** the old one is removed, so the server does not go down
+
+### Cloudflare
+- Logged into with `tamu.esports.development@gmail.com`
+- Hosts the frontend (**Cloudflare Pages**, auto-deploys from `master` with root `frontend`, build `npm run build`, output `build`), DNS for `tamuesports.com`, and the `@tamuesports.com` email routing (see [Domain & DNS](#domain--dns))
+- The Pages project is connected to the GitHub repo through the Cloudflare GitHub App on the `tamu-esports` org
+- Avoid clicking **Disconnect** on the Pages Git connection; re-attaching Git to an existing Pages project may not be possible and could require recreating the project and moving the custom domain
 
 ## Server Access
 
